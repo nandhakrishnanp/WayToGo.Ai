@@ -10,7 +10,8 @@ const ContextProvider = (props) => {
   const [result, setResult] = useState("");
   const [lastinp, setLastinp] = useState("");
   const [history, setHistory] = useState([]);
-
+  const [copy, setcopy] = useState("");
+  const [ copyText,setCopyText]=useState(false)
   const delayPara = (index, nextWord) => {
     setTimeout(() => {
       setResult((prev) => prev + nextWord);
@@ -36,8 +37,6 @@ const ContextProvider = (props) => {
     }
 
     setIsLoading(false);
-
-    
   };
 
   const sendInputToAPi = async () => {
@@ -46,25 +45,35 @@ const ContextProvider = (props) => {
     if (input) {
       setIsLoading(true);
       setIsHome(false);
-      
+
       setInput("");
       const response = await runChat(input);
-      
+
       if (response) {
-        
-        const newEntry = { user: lastinp,res: response };
-        console.log(lastinp);
-        console.log(lastinp , response);
+        setcopy(response);
+        const newEntry = { user: lastinp, res: response };
+        console.log(lastinp, response);
         setHistory([...history, newEntry]);
         fomateArray(response);
-        
       }
     }
+  };
+
+  const copyToClipboard = () => {
+    const el = document.createElement("textarea");
+    el.value = copy;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
   };
 
   const resetToHome = () => {
     setResult("");
     setIsHome(true);
+    setCopyText(false)
+    
+    
   };
 
   const handleSubmit = (e) => {
@@ -83,7 +92,10 @@ const ContextProvider = (props) => {
     setInput,
     lastinp,
     history,
-    setLastinp
+    setLastinp,
+    copyToClipboard,
+    copyText,
+    setCopyText
   };
 
   return (

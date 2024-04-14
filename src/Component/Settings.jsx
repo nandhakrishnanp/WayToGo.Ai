@@ -13,7 +13,7 @@ const Settings = () => {
       <div className="bg-gray-100 w-1/2 p-5 max-md:w-[90%] rounded-xl min-h-[500px] ">
              
              <p className=" capitalize font-open p-5 text-xl">Customize Articles Theme: </p>
-          <div className=" items-center flex gap-3 ps-5">
+          <div className=" items-center flex-wrap flex gap-3 ps-5">
                 <div className="  rounded-lg  bg-gray-300 hover:scale-105 transition-all duration-150 hover:cursor-pointer">
                      <p className="p-4 font-open font-bold  text-gray-700 ">Entertaining</p>
                 </div>

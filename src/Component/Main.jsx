@@ -7,8 +7,9 @@ import circle from "../assets/circle.svg";
 import TextEffect from "./TextEffect";
 import { Context } from "../Context/context";
 import Sidebar from "./Sidebar";
-
+import clip from "../assets/clip.svg"
 const Main = () => {
+  
   const {
     isLoading,
     isHome,
@@ -18,8 +19,9 @@ const Main = () => {
     result,
     sendInputToAPi,
     resetToHome,
-    setLastinp,
-
+    setLastinp,copyToClipboard,
+    copyText,
+    setCopyText,
     handleSubmit,
   } = useContext(Context);
 
@@ -177,7 +179,15 @@ const Main = () => {
         ) : null}
         {!isHome && !isLoading ? (
           <div className="w-1/2 max-md:w-full h-[500px] overflow-y-scroll small  scroll-cl shadow-lg rounded-xl p-6 font-open text-lg m-6">
-            <div dangerouslySetInnerHTML={{ __html: result }} />
+               <div className="flex gap-2">
+               <img onClick={()=> {copyToClipboard()
+            setCopyText(true)
+            } } src={clip} className=" hover:cursor-pointer hover:scale-105" width={35} alt="clipboard-icon" />
+
+            {copyText ? <p className="font-open ">Copied!</p>:null}
+               </div>
+           
+            <div className="pt-4" dangerouslySetInnerHTML={{ __html: result }} />
           </div>
         ) : null}
 
@@ -185,7 +195,7 @@ const Main = () => {
           <div
             onClick={() => {
               resetToHome();
-              
+              setCopyText(false)
             }}
             className="flex hover:cursor-pointer  hover:scale-105 transition-all duration-150 gap-1 "
           >
