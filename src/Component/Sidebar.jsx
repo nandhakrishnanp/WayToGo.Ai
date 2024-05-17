@@ -38,7 +38,7 @@ const Sidebar = () => {
         </div>
         <Link to="/">
           <div
-            onClick={() => resetToHome()}
+            
             className="flex items-center pl-4  gap-1 w-full hover:cursor-pointer hover:bg-gray-300 p-3  duration-200 hover:transition ease-out"
           >
             <img src={home} width={25} alt="" />

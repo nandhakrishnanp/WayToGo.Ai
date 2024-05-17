@@ -178,7 +178,7 @@ const Main = () => {
           </div>
         ) : null}
         {!isHome && !isLoading ? (
-          <div className="w-1/2 max-md:w-full h-[500px] overflow-y-scroll small  scroll-cl shadow-lg rounded-xl p-6 font-open text-lg m-6">
+          <div className="w-1/2 max-md:w-full max-md:min-h-screen h-[500px] overflow-y-scroll small  scroll-cl shadow-lg rounded-xl p-6 font-open text-lg m-6">
                <div className="flex gap-2">
                <img onClick={()=> {copyToClipboard()
             setCopyText(true)
